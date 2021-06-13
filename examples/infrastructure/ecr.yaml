@@ -1,0 +1,29 @@
+Description: >
+  This template deploys an ECR registry
+
+Parameters:
+  GatewayRepoName:
+    Description: Gateway ECR repo name
+    Type: String 
+  ColortellerRepoName:
+    Description: Gateway ECR repo name
+    Type: String   
+
+Resources:
+  GatewayECRRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Ref GatewayRepoName
+  ColortellerECRRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Ref ColortellerRepoName
+
+Outputs:    
+  GatewayArn:
+    Description: A reference to the Gateway ECR Repo
+    Value: !GetAtt GatewayECRRepo.Arn
+
+  ColortellerArn:
+    Description: A reference to the colorteller ECR Repo
+    Value: !GetAtt ColortellerECRRepo.Arn
